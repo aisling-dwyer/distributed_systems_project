@@ -1,0 +1,15 @@
+syntax = "proto3"
+
+package blood_glucose_monitoring;
+
+service BloodGlucoseMonitoringService {
+  rpc checkGlucoseLevels(GlucoseRequest) returns (GlucoseResponse) {}
+}
+
+message GlucoseRequest {
+  int32 bloodGlucose = 1;
+}
+
+message GlucoseResponse {
+  string message = 1;
+}

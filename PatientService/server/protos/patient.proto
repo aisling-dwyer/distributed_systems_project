@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+
+package patient;
+
+service PatientService {
+  rpc addNewPatient(stream PatientRequest) returns (PatientResponse) {}
+}
+
+message PatientRequest {
+  string name = 1;
+  string dob = 2;
+  string phone = 3;
+  string address = 4;
+}
+
+message PatientResponse {
+  string message = 1;
+  int32 numOfPatientsAdded = 2;
+}
