@@ -33,6 +33,6 @@ function checkGlucoseLevels(call, callback) {
 
 var server = new grpc.Server()
 server.addService(blood_glucose_monitoring_proto.BloodGlucoseMonitoringService.service, { checkGlucoseLevels: checkGlucoseLevels})
-server.bindAsync("0:0:0:0:40001", grpc.ServerCredentials.createInsecure(), function() {
+server.bindAsync("0:0:0:0:40000", grpc.ServerCredentials.createInsecure(), function() {
   server.start()
 })
