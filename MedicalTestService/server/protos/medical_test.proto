@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package medical_test;
+
+service MedicalTest {
+  rpc getTestsCost(stream MedicalTestRequest) returns (MedicalTestResponse) {}
+}
+
+message MedicalTestRequest {
+  string testName = 1;
+  double price = 2;
+}
+
+message MedicalTestResponse {
+  double price = 1;
+  int32 numOfTests = 2;
+}
