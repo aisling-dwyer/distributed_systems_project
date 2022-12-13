@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package blood_results;
+
+service BloodResultsService {
+  rpc getBloodResults(BloodResultsRequest) returns (stream BloodResultsResponse) {}
+}
+
+message BloodResultsRequest {
+  string departmentName = 1;
+    int32 numOfPatients = 2;
+}
+
+message BloodResultsResponse {
+  string patientName = 1;
+  string date = 2;
+  int32 whiteBloodCellCount = 3;
+  int32 haemoglobin = 4;
+  int32 cReactiveProtein = 5;
+  int32 sodium = 6;
+  int32 potassium = 7;
+  int32 calcium = 8;
+}
