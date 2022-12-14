@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package medical_test;
 
-service MedicalTest {
+service MedicalTestService {
   rpc getTestsCost(stream MedicalTestRequest) returns (MedicalTestResponse) {}
 }
 

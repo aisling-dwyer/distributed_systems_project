@@ -28,7 +28,7 @@ function getTestsCost(call, callback) {
 }
 
 var server = new grpc.Server()
-server.addService(medical_test_proto.MedicalTest.service, { getTestsCost: getTestsCost })
+server.addService(medical_test_proto.MedicalTestService.service, { getTestsCost: getTestsCost })
 server.bindAsync("0.0.0.0:40000", grpc.ServerCredentials.createInsecure(), function() {
   server.start()
 })
