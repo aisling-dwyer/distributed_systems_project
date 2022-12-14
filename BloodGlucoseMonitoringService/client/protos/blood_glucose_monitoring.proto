@@ -7,7 +7,7 @@ service BloodGlucoseMonitoringService {
 }
 
 message GlucoseRequest {
-  int32 bloodGlucose = 1;
+  string bloodGlucose = 1;
 }
 
 message GlucoseResponse {

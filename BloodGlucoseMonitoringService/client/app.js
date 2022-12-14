@@ -10,11 +10,13 @@ var client = new blood_glucose_monitoring_proto.BloodGlucoseMonitoringService("0
 var bloodGlucose = readLineSync.question("What is your current blood glucose level?")
 
 try{
-  client.add({bloodGlucose: bloodGlucose}, function(error, response) {
+  client.checkGlucoseLevels({bloodGlucose: bloodGlucose}, function(error, response) {
     try{
       console.log(response.message)
     } catch(e) {
-      console.log("An error occurred.")
+      console.log("An error occurred. 1")
     }
   })
+} catch(e) {
+  console.log("An error occurred 2")
 }

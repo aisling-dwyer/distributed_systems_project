@@ -2,7 +2,7 @@ var grpc = require("@grpc/grpc-js")
 var protoLoader = require("@grpc/proto-loader")
 var PROTO_PATH = __dirname + "/protos/ambulance_chat.proto"
 var packageDefinition = protoLoader.loadSync(PROTO_PATH)
-var ambulance_chat_proto = grpc.loadPackageDefinition(packageDefinition).chat
+var ambulance_chat_proto = grpc.loadPackageDefinition(packageDefinition).ambulance_chat
 
 
 var clients = {
@@ -15,7 +15,7 @@ function sendMessage(call) {
     if(!(chat_message.name in clients)) {
       clients[chat_message.name] = {
         name: chat_message.name,
-        call:call
+        call: call
       }
     }
 
@@ -33,7 +33,7 @@ function sendMessage(call) {
     call.end();
   });
 
-  call.on('error', function(e) {
+  call.on("error", function(e) {
     console.log(e)
   });
 }

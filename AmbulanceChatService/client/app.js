@@ -5,15 +5,15 @@ var protoLoader = require("@grpc/proto-loader")
 var PROTO_PATH = __dirname + "/protos/ambulance_chat.proto"
 
 var packageDefinition = protoLoader.loadSync(PROTO_PATH)
-var ambulance_chat_proto = grpc.loadPackageDefinition(packageDefinition).chat
+var ambulance_chat_proto = grpc.loadPackageDefinition(packageDefinition).ambulance_chat
 
 var client = new ambulance_chat_proto.AmbulanceChatService("localhost:40000", grpc.credentials.createInsecure());
 
 var name = readlineSync.question("What is your name?")
 var call = client.sendMessage();
 
-call.on('data', function(resp) {
-  console.log(resp.name + ": " + resp.message)
+call.on('data', function(response) {
+  console.log(response.name + ": " + response.message)
 })
 call.on('end', function() {
 
