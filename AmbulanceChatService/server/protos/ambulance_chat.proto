@@ -8,6 +8,6 @@ service AmbulanceChatService {
 }
 
 message ChatMessage {
- string name;
- string message;
+ string name = 1;
+ string message = 2;
 }

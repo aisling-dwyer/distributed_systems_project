@@ -6,17 +6,73 @@ var packageDefinition = protoLoader.loadSync(
 )
 var blood_results_proto = grpc.loadPackageDefinition(packageDefinition).blood_results
 
+
+var data = [
+  {
+    patientName: "John Doe",
+    date: "13-12-2022",
+    whiteBloodCellCount: 6,
+    haemoglobin: 13,
+    cReactiveProtein: 200,
+    sodium: 139,
+    potassium: 4,
+    calcium: 2.02
+  },
+  {
+    patientName: "Adam Johnson",
+    date: "13-12-2022",
+    whiteBloodCellCount: 7,
+    haemoglobin: 12,
+    cReactiveProtein: 5,
+    sodium: 145,
+    potassium: 6,
+    calcium: 1.83
+  },
+  {
+    patientName: "Connie Power",
+    date: "13-12-2022",
+    whiteBloodCellCount: 3,
+    haemoglobin: 6,
+    cReactiveProtein: 1,
+    sodium: 133,
+    potassium: 2,
+    calcium: 2.14
+  },
+  {
+    patientName: "Nicola Andrews",
+    date: "13-12-2022",
+    whiteBloodCellCount: 9,
+    haemoglobin: 5,
+    cReactiveProtein: 145,
+    sodium: 144,
+    potassium: 7,
+    calcium: 1.23
+  },
+  {
+    patientName: "Bob Hope",
+    date: "13-12-2022",
+    whiteBloodCellCount: 8,
+    haemoglobin: 10,
+    cReactiveProtein: 400,
+    sodium: 144,
+    potassium: 2,
+    calcium: 1.93
+  }
+]
+
+
+
 function getBloodResults(call, callback) {
-    for(var i = 0; i < call.request.numOfPatients; i++) {
+    for(var i = 0; i < data.length; i++) {
       call.write({
-        patientName: "xx",
-        date: "xx",
-        whiteBloodCellCount: 000,
-        haemoglobin: 000,
-        cReactiveProtein: 000,
-        sodium: 000,
-        potassium: 000,
-        calcium: 000
+        patientName: data[i].patientName,
+        date: data[i].date,
+        whiteBloodCellCount: data[i].date,
+        haemoglobin: data[i].haemoglobin,
+        cReactiveProtein: data[i].cReactiveProtein,
+        sodium: data[i].sodium,
+        potassium: data[i].potassium,
+        calcium: data[i].calcium
       })
     }
 

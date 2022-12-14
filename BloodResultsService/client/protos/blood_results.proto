@@ -7,8 +7,7 @@ service BloodResultsService {
 }
 
 message BloodResultsRequest {
-  string departmentName = 1;
-    int32 numOfPatients = 2;
+
 }
 
 message BloodResultsResponse {

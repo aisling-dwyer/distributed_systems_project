@@ -7,12 +7,12 @@ var packageDefinition = protoLoader.loadSync(PROTO_PATH)
 var blood_results_proto = grpc.loadPackageDefinition(packageDefinition).blood_results
 var client = new blood_results_proto.BloodResultsService("0.0.0.0:40000", grpc.credentials.createInsecure());
 
-var departmentName = readlineSync.question("What department do you want blood results for?")
-var numOfPatients = readlineSync.question("How many patients are in this department?")
+var call = client.getBloodResults({ });
 
-
+console.log("The patient blood results are:")
 call.on('data', function(response) {
-  console.log("The patient blood results of this department are " + response)
+   console.log("Name: " + response.patientName + ", Date blood test taken: " + response.date + ", White Blood Cell Count: " + response.whiteBloodCellCount +
+  ", Haemoglobin: " + response.haemoglobin + ", CRP: " + response.cReactiveProtein + ", Sodium: " + response.sodium + ", Potassium: " + response.potassium + ", Calcium: " +response.calcium + ".\n")
 })
 
 call.on('end', function() {
