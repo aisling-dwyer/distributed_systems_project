@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package blood_results;
 
+//initialisation of service
 service BloodResultsService {
+  //initialisation of rpc method
   rpc getBloodResults(BloodResultsRequest) returns (stream BloodResultsResponse) {}
 }
 

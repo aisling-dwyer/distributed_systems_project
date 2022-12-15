@@ -1,14 +1,17 @@
 var grpc = require("@grpc/grpc-js")
+//required to load the proto files
 var protoLoader = require("@grpc/proto-loader")
-
 
 
 // Service 1 - rpc checkGlucoseLevels
 // Unary service function - checkGlucoseLevels()
+//path to proto file
 var PROTO1_PATH = __dirname + "/protos/blood_glucose_monitoring.proto"
+//loading the proto file
 var packageDefinition = protoLoader.loadSync(PROTO1_PATH)
 var blood_glucose_monitoring_proto = grpc.loadPackageDefinition(packageDefinition).blood_glucose_monitoring
 
+//implementing the functionality of the checkGlucoseLevels method
 function checkGlucoseLevels(call, callback) {
   try {
     let bloodGlucoseLevel = parseInt(call.request.bloodGlucose)
@@ -45,11 +48,13 @@ function checkGlucoseLevels(call, callback) {
 
 // Service 2 - rpc checkGlucoseLevels
 // client side streaming - getTestsCost
-
+//path to proto file
 var PROTO2_PATH = __dirname + "/protos/medical_test.proto"
+//loading the proto file
 var packageDefinition = protoLoader.loadSync(PROTO2_PATH)
 var medical_test_proto = grpc.loadPackageDefinition(packageDefinition).medical_test
 
+//implementing the functionality of the getTestsCost method
 function getTestsCost(call, callback) {
   var price = 0
   var numOfTests = 0
@@ -74,12 +79,13 @@ function getTestsCost(call, callback) {
 
 // Service 3 - rpc addNewPatient
 // client side streaming
-
+//path to proto file
 var PROTO3_PATH = __dirname + "/protos/patient.proto"
+//loading the proto file
 var packageDefinition = protoLoader.loadSync(PROTO3_PATH)
 var patient_proto = grpc.loadPackageDefinition(packageDefinition).patient
 
-
+//implementing the functionality of the addNewPatient method
 function addNewPatient(call, callback) {
   var message = ""
   var numOfPatientsAdded = 0
@@ -104,12 +110,13 @@ function addNewPatient(call, callback) {
 
 // Service 4 - rpc getBloodResults
 // server side streaming
-
+//path to proto file
 var PROTO4_PATH = __dirname + "/protos/blood_results.proto"
+//loading the proto file
 var packageDefinition = protoLoader.loadSync(PROTO4_PATH)
 var blood_results_proto = grpc.loadPackageDefinition(packageDefinition).blood_results
 
-
+//the data which will be requested by the client and returned to the client
 var data = [
   {
     patientName: "John Doe",
@@ -164,7 +171,7 @@ var data = [
 ]
 
 
-
+//implementing the functionality of the getBloodResults method
 function getBloodResults(call, callback) {
     for(var i = 0; i < data.length; i++) {
       call.write({
@@ -184,8 +191,9 @@ function getBloodResults(call, callback) {
 
 // Service 5 - rpc sendMessage
 // bidirectional streaming
-
+//path to proto file
 var PROTO5_PATH = __dirname + "/protos/ambulance_chat.proto"
+//loading the proto file
 var packageDefinition = protoLoader.loadSync(PROTO5_PATH)
 var ambulance_chat_proto = grpc.loadPackageDefinition(packageDefinition).ambulance_chat
 
@@ -194,6 +202,7 @@ var clients = {
 
 }
 
+//implementing the functionality of the sendMessage method
 function sendMessage(call) {
   call.on('data', function(chat_message) {
 
@@ -224,15 +233,18 @@ function sendMessage(call) {
 }
 
 
-
+//creating the server
 var server = new grpc.Server()
 
+//adding each service to the server
 server.addService(blood_glucose_monitoring_proto.BloodGlucoseMonitoringService.service, { checkGlucoseLevels: checkGlucoseLevels})
 server.addService(medical_test_proto.MedicalTestService.service, { getTestsCost: getTestsCost })
 server.addService(patient_proto.PatientService.service, { addNewPatient: addNewPatient})
 server.addService(blood_results_proto.BloodResultsService.service, { getBloodResults: getBloodResults})
 server.addService(ambulance_chat_proto.AmbulanceChatService.service, { sendMessage: sendMessage})
 
+//specification of the address and port to listen for client requests
 server.bindAsync("0.0.0.0:40000", grpc.ServerCredentials.createInsecure(), function() {
+  //starting the server
   server.start()
 })

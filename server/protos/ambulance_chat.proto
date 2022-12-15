@@ -3,7 +3,9 @@ syntax = "proto3";
 
 package ambulance_chat;
 
+//initialisation of service
 service AmbulanceChatService {
+  //initialisation of rpc method
   rpc sendMessage(stream ChatMessage) returns (stream ChatMessage) {}
 }
 

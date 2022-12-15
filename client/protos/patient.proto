@@ -3,7 +3,9 @@ syntax = "proto3";
 
 package patient;
 
+//initialisation of service
 service PatientService {
+  //initialisation of rpc method
   rpc addNewPatient(stream PatientRequest) returns (PatientResponse) {}
 }
 

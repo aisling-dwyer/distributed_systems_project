@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package blood_glucose_monitoring;
 
+//initialisation of service
 service BloodGlucoseMonitoringService {
+  //initialisation of rpc method
   rpc checkGlucoseLevels(GlucoseRequest) returns (GlucoseResponse) {}
 }
 
