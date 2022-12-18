@@ -127,27 +127,27 @@ var data = [
     cReactiveProtein: 200,
     sodium: 139,
     potassium: 4,
-    calcium: 2.02
+    calcium: 2
   },
   {
     patientName: "Adam Johnson",
-    date: "13-12-2022",
+    date: "14-12-2022",
     whiteBloodCellCount: 7,
     haemoglobin: 12,
     cReactiveProtein: 5,
     sodium: 145,
     potassium: 6,
-    calcium: 1.83
+    calcium: 1
   },
   {
     patientName: "Connie Power",
-    date: "13-12-2022",
+    date: "15-12-2022",
     whiteBloodCellCount: 3,
     haemoglobin: 6,
     cReactiveProtein: 1,
     sodium: 133,
     potassium: 2,
-    calcium: 2.14
+    calcium: 2
   },
   {
     patientName: "Nicola Andrews",
@@ -157,17 +157,17 @@ var data = [
     cReactiveProtein: 145,
     sodium: 144,
     potassium: 7,
-    calcium: 1.23
+    calcium: 1
   },
   {
     patientName: "Bob Hope",
-    date: "13-12-2022",
+    date: "12-12-2022",
     whiteBloodCellCount: 8,
     haemoglobin: 10,
     cReactiveProtein: 400,
     sodium: 144,
     potassium: 2,
-    calcium: 1.93
+    calcium: 1
   }
 ]
 
@@ -178,7 +178,7 @@ function getBloodResults(call, callback) {
       call.write({
         patientName: data[i].patientName,
         date: data[i].date,
-        whiteBloodCellCount: data[i].date,
+        whiteBloodCellCount: data[i].whiteBloodCellCount,
         haemoglobin: data[i].haemoglobin,
         cReactiveProtein: data[i].cReactiveProtein,
         sodium: data[i].sodium,
