@@ -1,3 +1,4 @@
+//importing required modules
 var grpc = require("@grpc/grpc-js")
 //required to load the proto files
 var protoLoader = require("@grpc/proto-loader")
@@ -20,15 +21,15 @@ function checkGlucoseLevels(call, callback) {
     if(!result) {
       if(bloodGlucoseLevel < 4) {
       callback(null, {
-        message: "Your blood glucose level is low. Eat 15g of carbs such as half a cup of orange juice. Check your blood glucose levels again in 15 minutes"
+        message: "This blood glucose level is low. The patient must eat 15g of carbs such as half a cup of orange juice. Check the blood glucose levels again in 15 minutes"
       })
       } else if(bloodGlucoseLevel > 10) {
         callback(null, {
-          message: "Your blood glucose levels are high. You may need to take insulin."
+          message: "This blood glucose levels is high. The patient may need to take insulin."
         })
       } else {
         callback(null, {
-          message: "Your blood glucose levels are normal."
+          message: "This blood glucose level is normal."
           })
         }
 
@@ -41,7 +42,7 @@ function checkGlucoseLevels(call, callback) {
 
   } catch(e) {
       callback(null, {
-        message: "An error occurred 3."
+        message: "An error occurred"
       })
     }
 }
@@ -104,7 +105,7 @@ function addNewPatient(call, callback) {
 
 
   call.on('error', function(e) {
-    console.log("An error has occurred.")
+    console.log("An error occurred")
   })
 }
 

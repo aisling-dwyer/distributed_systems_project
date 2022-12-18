@@ -1,3 +1,5 @@
+//importing required modules
+//allows user input to be read from command line
 var readline = require('readline')
 var readlineSync = require('readline-sync')
 var grpc = require("@grpc/grpc-js")
@@ -56,14 +58,14 @@ if(action === 1) {
   // Service 1 - rpc checkGlucoseLevels
   // Unary service function - checkGlucoseLevels()
 
-  var bloodGlucose = readlineSync.question("What is your current blood glucose level?")
+  var bloodGlucose = readlineSync.question("What is the blood glucose level?")
 
   try{
     client1.checkGlucoseLevels({bloodGlucose: bloodGlucose}, function(error, response) {
       try{
         console.log(response.message)
       } catch(e) {
-        console.log("An error occurred. 1")
+        console.log("An error occurred")
       }
     })
   } catch(e) {
@@ -76,7 +78,7 @@ if(action === 1) {
 
   var call = client2.getTestsCost(function(error, response) {
     if(error) {
-      console.log("An error occurred,")
+      console.log("An error occurred")
     } else {
       console.log("You have ordered " +response.numOfTests + " test(s). The total cost of these tests is: €" + response.price)
     }
@@ -88,7 +90,7 @@ if(action === 1) {
       break
     }
     var price = readlineSync.question("How much does the test cost?")
-    
+
     call.write({
       price: parseFloat(price),
       testName: testName
@@ -132,6 +134,7 @@ if(action === 1) {
     }
 
   call.end()
+
 } else if(action === 4) {
   // Service 4 - rpc getBloodResults
   // server side streaming
@@ -180,7 +183,7 @@ if(action === 1) {
   })
 
   call.write({
-    message: name + " joined the chat room",
+    message: name + " joined the chat",
     name: name
   })
 
@@ -192,7 +195,7 @@ if(action === 1) {
   rl.on("line", function(message) {
     if(message.toLowerCase() === "quit") {
       call.write({
-        message: name + " left the chatroom",
+        message: name + " left the chat",
         name: name
       })
       call.end()
